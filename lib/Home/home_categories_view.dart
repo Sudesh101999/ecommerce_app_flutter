@@ -22,10 +22,11 @@ class HomeCategoriesView extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         image: DecorationImage(
-          image: imgPath,//const AssetImage('assets/images/woman.png'),
+          image: imgPath, //const AssetImage('assets/images/woman.png'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
-            boxColor.withOpacity(0.5),//Color.fromARGB(100, 28, 118, 238).withOpacity(0.5),
+            boxColor.withOpacity(0.5),
+            //Color.fromARGB(100, 28, 118, 238).withOpacity(0.5),
             BlendMode.dstATop,
           ),
         ),
@@ -41,13 +42,15 @@ class HomeCategoriesView extends StatelessWidget {
       ),
       // color: Colors.purple.shade100,
       child: Center(
-          child: Text(
-            lable,
-            style: const TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
-          )),
+        child: Text(
+          lable,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }

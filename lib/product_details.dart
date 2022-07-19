@@ -1,7 +1,9 @@
+import 'package:ecommerce_app/cart/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({
@@ -22,6 +24,27 @@ class _ProductDetailsState extends State<ProductDetails> {
     'assets/images/man_2.png',
     'assets/images/man_3.png',
   ];
+
+  void showMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.blue,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: Colors.blue,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +90,22 @@ class _ProductDetailsState extends State<ProductDetails> {
                 size: 30,
               ),
               onPressed: () {},
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 0,
+              top: 10,
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.account_balance_wallet,
+                color: Colors.black,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(_featuredPage(const CartPage()));
+              },
             ),
           ),
           Padding(
@@ -414,7 +453,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                            color: const Color(0xFFFFFFFF),
+                            color: const Color(0xFFF3F3F3),
                           ),
                           child: Center(
                             child: Text(
@@ -433,25 +472,75 @@ class _ProductDetailsState extends State<ProductDetails> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(
-              top: 18,
-              bottom: 18
-            ),
-            color: Color(0xFF667EEA),
-            child: Align(
-              alignment: Alignment.center,
-              child: Text(
-                'BUY NOW',
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Color(0xFFFFFFFF),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    showMessage('Add to cart clicked');
+                  },
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(top: 15, bottom: 15),
+                    color: Color(0xFFE3E3E3),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'ADD TO CART',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xFF000000),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Expanded(
+                child: InkWell(
+                  onTap: () {
+                    showMessage('Buy Now clicked');
+                  },
+                  child: Container(
+                    height: 50,
+                    padding: EdgeInsets.only(top: 15, bottom: 15),
+                    color: Color(0xFF667EEA),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        'BUY NOW',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFFFFFFFF),
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),
+    );
+  }
+
+  Route _featuredPage(CartPage featuredPage) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) =>
+      const CartPage(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(0.0, 1.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
+        var tween =
+        Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
     );
   }
 }
