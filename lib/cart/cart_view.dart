@@ -8,7 +8,7 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
-  int countDat = 1;
+  var countDat = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,13 @@ class _CartViewState extends State<CartView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if(countDat!=1) {
+                                setState(() {
+                                  countDat--;
+                                });
+                              }
+                            },
                             icon: Icon(
                               Icons.remove,
                               size: 16,
@@ -94,7 +100,11 @@ class _CartViewState extends State<CartView> {
                             style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                countDat++;
+                              });
+                            },
                             icon: Icon(
                               Icons.add,
                               size: 16,
