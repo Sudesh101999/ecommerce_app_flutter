@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/cart/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -75,28 +76,89 @@ class _CartPageState extends State<CartPage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 30,top: 10),
-              child: Text(
-                'Cart',
-                style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.black,
+      body: Stack(
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 10),
+                    child: Text(
+                      'Cart',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  CartView(),
+                  CartView(),
+                  CartView(),
+                  CartView(),
+                  CartView(),
+                  CartView(),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            left: 40,
+            right: 40,
+            child: InkWell(
+              onTap: () {
+                setState(() {
+                  //click operation
+                });
+              },
+              child: Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight,
+                    colors: [
+                      Color(0xff6d81eb),
+                      Color(0xff64b2fd),
+                    ]
+                  ),
+                ),
+                child: Text(
+                  'Change size',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
-            CartView(),
-            CartView(),
-            CartView(),
-            CartView(),
-            CartView(),
-            CartView(),
+          ),
+        ],
+      ),
+    );
+  }
 
-          ],
-        ),
+  void showMessage(String msg) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.TOP,
+      timeInSecForIosWeb: 1,
+      backgroundColor: Colors.blue,
+      textColor: Colors.white,
+      fontSize: 16.0,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(msg),
+        backgroundColor: Colors.blue,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
       ),
     );
   }
