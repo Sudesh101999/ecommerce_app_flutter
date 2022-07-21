@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/address/address_page.dart';
 import 'package:ecommerce_app/cart/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -111,13 +112,17 @@ class _CartPageState extends State<CartPage> {
               onTap: () {
                 setState(() {
                   //click operation
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddressPage()));
                 });
               },
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(18),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(5),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.topRight,
@@ -128,10 +133,11 @@ class _CartPageState extends State<CartPage> {
                   ),
                 ),
                 child: Text(
-                  'Change size',
+                  'Continue',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
