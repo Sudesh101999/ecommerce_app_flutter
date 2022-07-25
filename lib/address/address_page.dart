@@ -1,4 +1,6 @@
+import 'package:ecommerce_app/add_address_page.dart';
 import 'package:ecommerce_app/address/address_view.dart';
+import 'package:ecommerce_app/payments/payment_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -116,7 +118,13 @@ class _AddressPageState extends State<AddressPage> {
                 padding: const EdgeInsets.only(left: 18,right: 18,top: 10,bottom: 5),
                 child: InkWell(
                   onTap: () {
-                    showMessage('Buy Now clicked');
+                    setState(() {
+                      //click operation
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AddAddressPage()));
+                    });
                   },
                   child: DottedBorder(
                     color: Color(0xFF667EEA),//color of dotted/dash line
@@ -150,6 +158,10 @@ class _AddressPageState extends State<AddressPage> {
                 child: InkWell(
                   onTap: () {
                     showMessage('Continue to payment clicked');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PaymentPage()));
                   },
                   child: Container(
                     padding: EdgeInsets.only(top: 15, bottom: 15),

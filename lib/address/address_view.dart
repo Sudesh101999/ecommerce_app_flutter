@@ -11,7 +11,7 @@ class _AddressViewState extends State<AddressView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 30.0,right: 30,top: 20),
+      padding: const EdgeInsets.only(left: 30.0, right: 30, top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,7 +26,9 @@ class _AddressViewState extends State<AddressView> {
                   color: Color(0xFF676767),
                 ),
               ),
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
               Text(
                 'Your City',
                 style: TextStyle(
@@ -36,11 +38,14 @@ class _AddressViewState extends State<AddressView> {
               ),
             ],
           ),
-          Radio(value: '', groupValue: 'groupValue', onChanged: (String? value)  {
-            setState(() {
+          Radio(
+              value: '',
+              groupValue: 'groupValue',
+              onChanged: (String? value) {
+                setState(() {
 
-            });
-          })
+                });
+              })
         ],
       ),
     );

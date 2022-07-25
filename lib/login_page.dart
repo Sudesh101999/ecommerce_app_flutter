@@ -19,8 +19,8 @@ class _LoginPageState extends State<LoginPage> {
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
 
   // _userPasswordController = TextEditingController();
-  late TextEditingController _userEmailController;
-  late TextEditingController _userPasswordController;
+  late TextEditingController _userEmailController,_userPasswordController;
+  // late TextEditingController ;
 
   @override
   void initState() {
